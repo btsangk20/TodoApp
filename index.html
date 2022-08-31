@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="todo-page">
+    <h3 class="todo-tittle">Todo List</h3>
+    <div class="todo-container">
+      <button class="edit-button button">Edit</button>
+      <textarea type="text" class="input-content" placeholder="Add new todo"></textarea>
+      <button class="add-button button">Add new task</button>
+    </div>
+    <div class="todo-content" id="todo-content">
+        <ul class="todo-list">
+          <li class="todo-item">
+            <div class="task-name">
+              <span class="todo-text">Learn HTML</span>
+              <button class="delete-button button">Delete</button>
+              <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
+              <button class="update-button button">Update</button>
+            </div>
+          </li>
+          <li class="todo-item">
+            <div class="task-name">
+              <span class="todo-text">Learn CSS</span>
+              <button class="delete-button button">Delete</button>
+              <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
+              <button class="update-button button">Update</button>
+            </div>
+          </li>
+          <li class="todo-item">
+            <div class="task-name">
+              <span class="todo-text">Learn JS</span>
+              <button class="delete-button button">Delete</button>
+              <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
+              <button class="update-button button">Update</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
