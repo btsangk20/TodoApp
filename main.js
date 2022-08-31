@@ -1,5 +1,7 @@
 const length = document.getElementsByClassName('delete-button').length;
 
+hiddenForSave()
+
 let buttonEditTask = document.getElementsByClassName('edit-button')[0]
 buttonEditTask.addEventListener('click', function () {
   if (buttonEditTask.className === 'edit-button') {
