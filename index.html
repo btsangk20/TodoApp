@@ -11,36 +11,12 @@
   <div class="todo-page">
     <h3 class="todo-tittle">Todo List</h3>
     <div class="todo-container">
-      <button class="edit-button button">Edit</button>
-      <textarea type="text" class="input-content" placeholder="Add new todo"></textarea>
-      <button class="add-button button">Add new task</button>
+      <button class="edit-button button" onclick="onClickEditButton()">Edit</button>
+      <textarea type="text" class="input-content" placeholder="Enter a new todo"></textarea>
+      <button class="button add-button" onclick="addNewTask()">Add new task</button>
     </div>
     <div class="todo-content" id="todo-content">
         <ul class="todo-list">
-          <li class="todo-item">
-            <div class="task-name">
-              <span class="todo-text">Learn HTML</span>
-              <button class="delete-button button">Delete</button>
-              <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
-              <button class="update-button button">Update</button>
-            </div>
-          </li>
-          <li class="todo-item">
-            <div class="task-name">
-              <span class="todo-text">Learn CSS</span>
-              <button class="delete-button button">Delete</button>
-              <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
-              <button class="update-button button">Update</button>
-            </div>
-          </li>
-          <li class="todo-item">
-            <div class="task-name">
-              <span class="todo-text">Learn JS</span>
-              <button class="delete-button button">Delete</button>
-              <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
-              <button class="update-button button">Update</button>
-            </div>
-          </li>
         </ul>
       </div>
   </div>

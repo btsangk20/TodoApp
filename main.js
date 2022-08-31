@@ -1,129 +1,113 @@
-const length = document.getElementsByClassName('delete-button').length;
+let taskList = [];
 
-hiddenForSave()
+hiddenForSave();
 
-let buttonEditTask = document.getElementsByClassName('edit-button')[0]
-buttonEditTask.addEventListener('click', function () {
-  if (buttonEditTask.className === 'edit-button') {
-    buttonEditTask.className = 'save-button'
-    buttonEditTask.innerHTML = 'Save'
-    displayForEdit()
+function onClickEditButton() {
+  console.log("edit");
+  const buttonEditTask = document.getElementsByClassName("edit-button")[0];
+  if (buttonEditTask.textContent == "Edit") {
+    buttonEditTask.textContent = "Save";
+    displayForEdit();
+  } else {
+    buttonEditTask.textContent = "Edit";
+    hiddenForSave();
   }
-  else {
-    buttonEditTask.className = 'edit-button'
-    buttonEditTask.innerHTML = 'Edit'
-    hiddenForSave()
-  }
-})
+}
 
-function displayForEdit () {
-  for (var i = 0; i < length; ++i) {
-    let button = document.getElementsByClassName('update-button')[i]
-    button.style.display = 'flex'
-    //display add button
-    let addButton = document.getElementsByClassName('add-button')[0]
-    addButton.style.display = 'flex'
-    //display delete button
-    let deleteButton = document.getElementsByClassName('delete-button')[i]
-    deleteButton.style.display = 'flex'
+function displayForEdit() {
+  let addButton = document.getElementsByClassName("add-button")[0];
+  addButton.style.display = "flex";
 
-    let inputContent = document.getElementsByClassName('input-content')[0]
-    inputContent.style.display = 'flex'
+  let inputContent = document.getElementsByClassName("input-content")[0];
+  inputContent.style.display = "flex";
 
-    let updateContent = document.getElementsByClassName('update-content')[i]
-    updateContent.style.display = 'flex'
+  const controller = document.getElementsByClassName("controller");
+  for (var i = 0; i < controller.length; ++i) {
+    controller[i].style.visibility = "visible";
   }
 }
 
 function hiddenForSave() {
-  for (var i = 0; i < length; ++i) {
-    let button = document.getElementsByClassName('update-button')[i]
-    button.style.display = 'none'
+  let addButton = document.getElementsByClassName("add-button")[0];
+  addButton.style.display = "none";
 
-    let addButton = document.getElementsByClassName('add-button')[0]
-    addButton.style.display = 'none'
+  let inputContent = document.getElementsByClassName("input-content")[0];
+  inputContent.style.display = "none";
 
-    let deleteButton = document.getElementsByClassName('delete-button')[i]
-    deleteButton.style.display = 'none'
-
-    let inputContent = document.getElementsByClassName('input-content')[0]
-    inputContent.style.display = 'none'
-
-    let updateContent = document.getElementsByClassName('update-content')[i]
-    updateContent.style.display = 'none'
+  const controller = document.getElementsByClassName("controller");
+  for (var i = 0; i < controller.length; ++i) {
+    controller[i].style.visibility = "hidden";
   }
 }
 
-for (var i = 0; i < length; ++i) {
-  let buttonUpdateTask = document.getElementsByClassName('update-button')[i]
-  let taskUpdate = document.getElementsByClassName('update-content')[i]
-  let index = i
-  buttonUpdateTask.addEventListener('click', function () {
-    if (!taskUpdate.value) {
-      alert('Please enter a task name')
-      return
+function updateTask(index) {
+  let taskUpdate = document.getElementsByClassName("update-content")[index];
+
+  if (!taskUpdate.value) {
+    alert("Please enter a task name");
+    return false;
+  }
+
+  let tasks = [];
+  tasks.push({
+    name: taskUpdate.value,
+  });
+
+  taskList.forEach((task, i) => {
+    if (i === index) {
+      task.name = tasks[0].name;
     }
-    //get index of task
-    let tasks = []
-    tasks.push({
-      task: taskUpdate.value,
-    })
+  });
 
-    taskUpdate.value = ''
+  renderTask();
+  taskUpdate.value = "";
 
-    updateTaskName(tasks, index)
-
-  })
+  alert("Successfully updated");
+  return true;
 }
 
-function updateTaskName(tasks = [], index) {
-  tasks.forEach((task) => {
-    console.log(task)
-    let taskName = document.getElementsByClassName('todo-text')[index]
-    taskName.innerHTML = task.task
-  })
-}
-//Add new task
-let buttonAddNewTask = document.getElementsByClassName('add-button')[0]
-let taskNameElement = document.getElementsByClassName('input-content')[0]
-
-buttonAddNewTask.addEventListener('click', function() {
+function addNewTask() {
+  let taskNameElement = document.getElementsByClassName("input-content")[0];
   if (!taskNameElement.value) {
-    alert('Please enter a task name')
-    return false
+    alert("Please enter a task name");
+    return false;
   }
-  let tasks = []
+  let tasks = [];
   tasks.push({
     name: taskNameElement.value,
-  })
-  taskNameElement.value = ''
+  });
+  taskList = [...taskList, ...tasks];
 
-  renderTask(tasks) 
-} )
+  renderTask();
 
-function renderTask (tasks = []) {
-  let content = '<ul>'
+  taskNameElement.value = "";
 
-  tasks.forEach((task) => {
+  alert("Successfully added");
+  return true;
+}
+
+function renderTask() {
+  let content = "<ul>";
+
+  taskList.forEach((task, index) => {
     content += `<li class="todo-item">
       <div class="task-name">
         <span class="todo-text">${task.name}</span>
-        <button class="delete-button button">Delete</button>
-        <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
-        <button class="update-button button">Update</button>
+        <div class="controller">
+          <button class="delete-button button" onclick="deleteTask(${index})">Delete</button>
+          <textarea type="text" class="update-content" placeholder="Please enter a task name"></textarea>
+          <button class="update-button button" onclick="updateTask(${index})">Update</button>
+        </div>
       </div>
-    </li>`
-  })
+    </li>`;
+  });
 
-  content += '</ul>'
+  content += "</ul>";
 
-  document.querySelector('#todo-content').innerHTML += content
+  document.querySelector("#todo-content").innerHTML = content;
 }
 
-//delete task
-for (var i = 0; i < length; ++i) {
-  document.getElementsByClassName('delete-button')[i].onclick = function () {
-    let task = this.parentElement.parentElement
-    task.remove()
-  }
-} 
+function deleteTask(index) {
+  taskList.splice(index, 1);
+  renderTask();
+}
