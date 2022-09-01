@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Log In</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="log-in-page">
+      <div class="log-in__container">
+        <h2 class="log-in__title">Log in</h2>
+        <div class="log-in__body">
+          <div class="log-in__form">
+            <div class="input-email">
+              <input
+                type="email"
+                class="log-in__input"
+                placeholder="Email"
+                name="email"
+                id="email"
+                autofocus="true"
+              />
+              <label class="email-error"></label>
+            </div>
+
+            <div class="input-password">
+              <input
+                type="password"
+                class="log-in__input"
+                placeholder="Password"
+                minlength="8"
+                maxlength="14"
+                id="password"
+                name="password"
+              />
+              <label class="password-error"></label>
+            </div>
+
+            <div class="log-in_remember-box">
+              <input
+                type="checkbox"
+                class="remember-box_checkbox"
+                id="remember-box_ID"
+                value="Remember"
+              />
+              <label htmlFor="remember-box_ID" class="remember-box_title">
+                Remember Me
+              </label>
+            </div>
+
+            <button class="log-in__submit-button" onclick="validateAccount()">
+              Log in
+            </button>
+          </div>
+
+          <p>OR</p>
+        </div>
+
+        <div class="log-in__footer">
+          <a href="#" class="log-in__sign-up-link"> Create a new account? </a>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

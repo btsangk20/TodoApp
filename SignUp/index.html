@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="sign-up-page">
+      <div class="sign-up__container">
+        <h2 class="sign-up__title">Sign Up</h2>
+        <div class="sign-up__body">
+          <div class="sign-up__form">
+
+            <div class="input-full-name">
+              <input
+                type="text"
+                class="sign-up__input"
+                placeholder="Full Name"
+                name="fullName"
+                id="fullName"
+                autofocus="true"
+              />
+              <label class="full-name-error"></label>
+            </div>
+
+            <div class="input-email">
+              <input
+                type="email"
+                class="sign-up__input"
+                placeholder="Email"
+                name="email"
+                id="email"
+                autofocus="true"
+              />
+              <label class="email-error"></label>
+            </div>
+
+            <div class="input-password">
+              <input
+                type="password"
+                class="sign-up__input"
+                placeholder="Password"
+                minlength="8"
+                maxlength="14"
+                id="password"
+                name="password"
+              />
+              <label class="password-error"></label>
+            </div>
+
+            <div class="input-confirm-password">
+              <input
+                type="password"
+                class="sign-up__input"
+                placeholder="Confirm Password"
+                minlength="8"
+                maxlength="14"
+                name="confirmPassword"
+                id="confirmPassword"
+              />
+              <label class="confirm-password-error"></label>
+            </div>
+
+            <div class="gender-container">
+              <div class="male-option">
+                <label class="male-tittle">Male</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="=Male"
+                  class="sign-up__input"
+                  id="gender-option gender-option"
+                />
+              </div>
+              <div class="female-option">
+                <label class="female-tittle">Female</label>
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Female"
+                  class="sign-up__input gender-option"
+                />
+              </div>
+            </div>
+            <label class="gender-error"></label>
+
+            <button
+              class="sign-up__submit-button"
+              onclick="validateForm()"
+            >
+            Sign Up
+            </button>
+          </div>
+          <p>OR</p>
+        </div>
+        <div class="sign-up__footer">
+          <a href="#" class="sign-up__log-in-link"> Already had an account? </a>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

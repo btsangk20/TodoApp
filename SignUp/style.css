@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.sign-up-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f8fb;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+}
+
+.sign-up__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 72px;
+  gap: 32px;
+  border-radius: 12px;
+  box-shadow: 0px 24px 73px rgba(23, 22, 69, 0.08);
+}
+
+.sign-up__title {
+  color: #171645;
+  font-size: 32px;
+  margin: 0;
+}
+
+.sign-up__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.sign-up__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 410px;
+}
+
+.sign-up__body > p {
+  color: #171645;
+  opacity: 0.5;
+  margin: 0;
+  font-weight: 500;
+}
+
+.sign-up__form input {
+  font-size: 18px;
+  padding: 24px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #dadaf2;
+  font-family: inherit;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-full-name, .input-email, .input-password, .input-confirm-password {
+  width: 100%;
+}
+
+.gender-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.male-option, .female-option {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.male-option > label, .female-option > label {
+  color: #171645;
+}
+
+.sign-up__input {
+  color: #171645;
+  background-color: #f8f8fb;
+}
+
+.sign-up__input::placeholder {
+  color: #171645;
+  opacity: 0.6;
+}
+
+.sign-up__submit-button {
+  font-size: 18px;
+  padding: 24px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #dadaf2;
+  font-family: inherit;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: #171645;
+  border-color: #171645 !important;
+  display: block;
+}
+
+.email-error, .password-error, .full-name-error, .confirm-password-error, .gender-error {
+  color: #fb7478;
+}
+
+.sign-up__submit-button:hover,
+.sign-up__submit-button:focus {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.sign-up__log-in-link:link,
+.sign-up__log-in-link:visited {
+  color: #171645;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sign-up__log-in-link:hover,
+.sign-up__log-in-link:focus {
+  text-decoration: underline;
+}
