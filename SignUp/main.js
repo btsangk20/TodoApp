@@ -4,9 +4,24 @@ const EMAIL_REGEX =
 const FULLNAME_REGEX = /^[a-zA-Z ]{2,40}$/;
 
 const AccountUser = {
+  fullname: "",
   email: "",
   password: "",
 };
+
+function getAccountUser() {
+  const AccountUser = new Object();
+  AccountUser.fullname = localStorage.getItem("fullname");
+  AccountUser.email = localStorage.getItem("email");
+  AccountUser.password = localStorage.getItem("password");
+  return AccountUser;
+}
+
+function setAccountUser(AccountUser) {
+  localStorage.setItem("fullname", AccountUser.fullname);
+  localStorage.setItem("email", AccountUser.email);
+  localStorage.setItem("password", AccountUser.password);
+}
 
 function getValidateMessageGender() {
   var genderItem = document.getElementsByName('gender');
@@ -17,17 +32,6 @@ function getValidateMessageGender() {
   return "Please select your gender";
 }
 
-function getAccountUser() {
-  const AccountUser = new Object();
-  AccountUser.email = localStorage.getItem("email");
-  AccountUser.password = localStorage.getItem("password");
-  return AccountUser;
-}
-
-function setAccountUser(AccountUser) {
-  localStorage.setItem("email", AccountUser.email);
-  localStorage.setItem("password", AccountUser.password);
-}
 
 function getValidateMessageEmail(email) {
   if (email.trim() === "") {
@@ -109,17 +113,19 @@ function getValidateMessageConfirmPassword(confirmPassword, password) {
   return "";
 }
 
+function renderErrorMessage(fullNameErrorMessage, emailErrorMessage, passwordErrorMessage, confirmPasswordErrorMessage, genderErrorMessage) {
+  document.getElementsByClassName("full-name-error")[0].innerHTML = fullNameErrorMessage;
+  document.getElementsByClassName("email-error")[0].innerHTML = emailErrorMessage;
+  document.getElementsByClassName("password-error")[0].innerHTML = passwordErrorMessage;
+  document.getElementsByClassName("confirm-password-error")[0].innerHTML = confirmPasswordErrorMessage;
+  document.getElementsByClassName("gender-error")[0].innerHTML = genderErrorMessage;
+}
+
 function validateForm() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const fullname = document.getElementById("fullName").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-
-  let emailErrorMessage = document.getElementsByClassName("email-error")[0];
-  let passwordErrorMessage =document.getElementsByClassName("password-error")[0];
-  let fullNameErrorMessage =document.getElementsByClassName("full-name-error")[0];
-  let confirmPasswordErrorMessage = document.getElementsByClassName("confirm-password-error")[0];
-  let genderErorMessage = document.getElementsByClassName('gender-error')[0];
 
   const emailError = getValidateMessageEmail(email);
   const passwordError = getValidateMessagePassword(password);
@@ -128,204 +134,125 @@ function validateForm() {
   const genderError = getValidateMessageGender();
 
   if (fullNameError && emailError && passwordError && confirmPasswordError && genderError) {
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = passwordError;
-    fullNameErrorMessage.innerHTML = fullNameError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
-    genderErorMessage.innerHTML = genderError;
+    renderErrorMessage(fullNameError, emailError, passwordError, confirmPasswordError, genderError);
     return false;
   }
 
   if (!fullNameError && emailError && passwordError && confirmPasswordError && genderError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = passwordError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
-    genderErorMessage.innerHTML = genderError;
+    renderErrorMessage("", emailError, passwordError, confirmPasswordError, genderError);
     return false;
   }
 
   if (!emailError && fullNameError && passwordError && confirmPasswordError && genderError) {
-    emailErrorMessage.innerHTML = "";
-    fullNameErrorMessage.innerHTML = fullNameError;
-    passwordErrorMessage.innerHTML = passwordError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
-    genderErorMessage.innerHTML = genderError;
+    renderErrorMessage(fullNameError, "", passwordError, confirmPasswordError, genderError);
     return false;
   }
 
   if (!passwordError && fullNameError && emailError && confirmPasswordError && genderError) {
-    passwordErrorMessage.innerHTML = "";
-    fullNameErrorMessage.innerHTML = fullNameError;
-    emailErrorMessage.innerHTML = emailError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
-    genderErorMessage.innerHTML = genderError;
+    renderErrorMessage(fullNameError, emailError, "", confirmPasswordError, genderError);
     return false;
   }
 
   if (!genderError && fullNameError && emailError && confirmPasswordError && passwordError) {
-    genderErorMessage.innerHTML = "";
-    fullNameErrorMessage.innerHTML = fullNameError;
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = passwordError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage(fullNameError, emailError, passwordError, confirmPasswordError, "");
     return false;
   }
 
   if (!fullNameError && !emailError && passwordError && confirmPasswordError && genderError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = passwordError;
-    genderErorMessage.innerHTML = genderError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage("", "", passwordError, confirmPasswordError, genderError);
     return false;
   }
 
   if (!fullNameError && emailError && !passwordError && confirmPasswordError && genderError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = genderError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage("", emailError, "", confirmPasswordError, genderError);
     return false;
   }
 
   if (!fullNameError && !genderError && passwordError && confirmPasswordError && emailError) {
-    fullNameErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = passwordError;
-    emailErrorMessage.innerHTML = emailError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage("", emailError, passwordError, confirmPasswordError, "");
     return false;
   }
 
   if (!passwordError && !emailError && fullNameError && confirmPasswordError && genderError) {
-    passwordErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = "";
-    fullNameErrorMessage.innerHTML = fullNameError;
-    genderErorMessage.innerHTML = genderError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage(fullNameError, "", "", confirmPasswordError, genderError);
     return false;
   }
 
   if (!emailError && !genderError && passwordError && confirmPasswordError && fullNameError) {
-    emailErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = passwordError;
-    fullNameErrorMessage.innerHTML = fullNameError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage(fullNameError, "", passwordError, confirmPasswordError, "");
     return false;
   }
 
   if(!passwordError && !genderError && emailError && confirmPasswordError && fullNameError) {
-    passwordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = emailError;
-    fullNameErrorMessage.innerHTML = fullNameError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage(fullNameError, emailError, "", confirmPasswordError, "");
     return false;
   }
 
   if (!passwordError && !confirmPasswordError && emailError && fullNameError && genderError) {
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = emailError;
-    genderErorMessage.innerHTML = genderError;
-    fullNameErrorMessage.innerHTML = fullNameError;
+    renderErrorMessage(fullNameError, emailError, "", "", genderError);
     return false;
   }
 
   if (!fullNameError && !emailError && !passwordError && confirmPasswordError && genderError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = genderError;
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
+    renderErrorMessage("", "", "", confirmPasswordError, genderError);
     return false;
   }
 
   if (fullNameError && !emailError && !passwordError && !confirmPasswordError && genderError) {
-    genderErorMessage.innerHTML = genderError;
-    fullNameErrorMessage.innerHTML = fullNameError;
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
+    renderErrorMessage(fullNameError, "", "", "", genderError);
     return false;
   }
 
   if (!fullNameError && !emailError && !genderError && confirmPasswordError && passwordError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
-    passwordErrorMessage.innerHTML = passwordError;
+    renderErrorMessage("", "", passwordError, confirmPasswordError, "");
+    return false;
+  }
+
+  if (!fullNameError && emailError && !passwordError && confirmPasswordError && !genderError) {
+    renderErrorMessage("", emailError, "", confirmPasswordError, "");
     return false;
   }
 
   if (!emailError && !passwordError && !genderError && confirmPasswordError && fullNameError) {
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = confirmPasswordError;
-    fullNameErrorMessage.innerHTML = fullNameError;
+    renderErrorMessage(fullNameError, "", "", confirmPasswordError, "");
     return false;
   }
 
   if (!fullNameError && !passwordError && !confirmPasswordError && genderError && emailError) {
-    fullNameErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = genderError;
-    emailErrorMessage.innerHTML = emailError;
+    renderErrorMessage("", emailError, "", "", genderError);
     return false;
   }
 
   if (!genderError && !passwordError && !confirmPasswordError && fullNameError && emailError) {
-    genderErorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
-    fullNameErrorMessage.innerHTML = fullNameError;
-    emailErrorMessage.innerHTML = emailError;
+    renderErrorMessage(fullNameError, emailError, "", "", "");
     return false;
   }
 
   if (!fullNameError && !emailError && genderError && !confirmPasswordError && !passwordError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = genderError;
+    renderErrorMessage("", "", "", "", genderError);
+    return false;
+  }
+
+  if (!fullNameError && !emailError && !passwordError && confirmPasswordError && !genderError) {
+    renderErrorMessage("", "", "", confirmPasswordError, "");
     return false;
   }
 
   if (!fullNameError && emailError && !genderError && !confirmPasswordError && !passwordError) {
-    fullNameErrorMessage.innerHTML = "";
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
+    renderErrorMessage("", emailError, "", "", "");
     return false;
   }
 
   if(fullNameError && !emailError && !genderError && !confirmPasswordError && !passwordError) {
-    fullNameErrorMessage.innerHTML = fullNameError;
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = "";
-    confirmPasswordErrorMessage.innerHTML = "";
-    genderErorMessage.innerHTML = "";
+    renderErrorMessage(fullNameError, "", "", "", "");
     return false;
   }
 
-
-
-  emailErrorMessage.innerHTML = "";
-  passwordErrorMessage.innerHTML = "";
-  fullNameErrorMessage.innerHTML = "";
-  confirmPasswordErrorMessage.innerHTML = "";
-  genderErorMessage.innerHTML = "";
+  renderErrorMessage("","","","","");
 
   let storeAccount = new Object();
 
+  storeAccount.fullname = fullname;
   storeAccount.email = email;
   storeAccount.password = password;
 
@@ -333,3 +260,11 @@ function validateForm() {
 
   return true;
 }
+
+function onClickSignUp() {
+  if (validateForm()) {
+    alert("Register success");
+    window.location.href = "http://127.0.0.1:5500/SignIn/";
+  }
+}
+

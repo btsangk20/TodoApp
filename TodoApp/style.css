@@ -19,7 +19,7 @@
     display: flex;
 }
 
-.edit-button, .add-button {
+.edit-button, .add-button, .log-out-button {
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;
@@ -95,6 +95,27 @@
     outline: none;
 }
 
+.user-infomation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user__full-name {
+    font-size: 26px;
+    font-weight: 700;
+    color: black;
+}
+
 .task-name {
     display: flex;
     flex-direction: row;
@@ -102,7 +123,7 @@
     justify-content: flex-start;
 }
 
-.save-button, .edit-button, .delete-button, .add-button, .update-button {
+.save-button, .edit-button, .delete-button, .add-button, .update-button, .log-out-button {
     background-color: #c47135;
     border: none;
     color: #ffffff;

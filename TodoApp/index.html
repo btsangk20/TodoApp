@@ -9,6 +9,10 @@
   </head>
   <body>
     <div class="todo-page">
+      <div class="user-infomation">
+        <img src="https://api.multiavatar.com/Starcrasher.png" alt="User-avatar" class="user-avatar">
+        <label class="user__full-name">Welcome, </label>
+      </div>
       <h3 class="todo-tittle">Todo List</h3>
       <div class="todo-container">
         <button class="edit-button button" onclick="onClickEditButton()">
@@ -26,6 +30,7 @@
       <div class="todo-content" id="todo-content">
         <ul class="todo-list"></ul>
       </div>
+      <button class="log-out-button button" onclick="onClickLogout()">Log out</button>
     </div>
     <script src="main.js"></script>
   </body>

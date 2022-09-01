@@ -1,5 +1,25 @@
 let taskList = [];
 
+const AccountUser = {
+  fullname: "",
+  email: "",
+  password: "",
+};
+
+function getAccountUser() {
+  const AccountUser = new Object();
+  AccountUser.fullname = localStorage.getItem("fullname");
+  AccountUser.email = localStorage.getItem("email");
+  AccountUser.password = localStorage.getItem("password");
+  return AccountUser;
+}
+
+function renderUser () {
+  let user = getAccountUser();
+  document.getElementsByClassName("user__full-name")[0].innerHTML += user.fullname;
+}
+
+renderUser()
 hiddenForSave();
 
 function onClickEditButton() {
@@ -111,3 +131,11 @@ function deleteTask(index) {
   taskList.splice(index, 1);
   renderTask();
 }
+
+function onClickLogout() {
+  localStorage.removeItem("fullname");
+  localStorage.removeItem("email");
+  localStorage.removeItem("password");
+  window.location.href = "http://127.0.0.1:5500/SignIn/";
+}
+

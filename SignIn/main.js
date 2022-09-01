@@ -4,12 +4,14 @@ const EMAIL_REGEX =
 const FULLNAME_REGEX = /^[a-zA-Z ]{2,40}$/;
 
 const AccountUser = {
+  fullname: "",
   email: "",
   password: "",
 };
 
 function getAccountUser() {
   const AccountUser = new Object();
+  AccountUser.fullname = localStorage.getItem("fullname");
   AccountUser.email = localStorage.getItem("email");
   AccountUser.password = localStorage.getItem("password");
   return AccountUser;
@@ -45,36 +47,42 @@ function getValidateMessagePassword(password, isStrict = true) {
   return "";
 }
 
+function renderErrorMessage(emailErrorMessage, passwordErrorMessage) {
+  document.getElementsByClassName("email-error")[0].innerHTML = emailErrorMessage;
+  document.getElementsByClassName("password-error")[0].innerHTML = passwordErrorMessage;
+}
+
 function validateAccount() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-
-  let emailErrorMessage = document.getElementsByClassName("email-error")[0];
-  let passwordErrorMessage = document.getElementsByClassName("password-error")[0];
 
   const emailError = getValidateMessageEmail(email);
   const passwordError = getValidateMessagePassword(password);
 
   if (emailError && passwordError) {
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = passwordError;
+    renderErrorMessage(emailError, passwordError);
     return false;
   }
 
   if (!emailError && passwordError) {
-    emailErrorMessage.innerHTML = "";
-    passwordErrorMessage.innerHTML = passwordError;
+    renderErrorMessage("", passwordError);
     return false;
   }
 
   if (emailError && !passwordError) {
-    emailErrorMessage.innerHTML = emailError;
-    passwordErrorMessage.innerHTML = "";
+    renderErrorMessage(emailError, "");
     return false;
   }
 
-  emailErrorMessage.innerHTML = "";
-  passwordErrorMessage.innerHTML = "";
+  renderErrorMessage("", "");
 
   return true;
 }
+
+function onClickLogin() {
+  if (validateAccount()) {
+    alert("Login success");
+    window.location.href = "http://127.0.0.1:5500/TodoApp/";
+  }
+}
+
