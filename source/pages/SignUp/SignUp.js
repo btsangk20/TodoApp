@@ -1,5 +1,7 @@
 document.getRootNode().addEventListener("load", isLogged());
 
+getAccountUser();
+
 function getValidateMessageGender() {
   var genderItem = document.getElementsByName('gender');
   for(i = 0; i < genderItem.length; i++) {
@@ -17,6 +19,12 @@ function getValidateMessageEmail(email) {
 
   if (!EMAIL_REGEX.test(email.trim())) {
     return "Email is not valid";
+  }
+
+  for (var i = 0; i < listUser.length; i++) {
+    if (listUser[i].email === email.trim()) {
+      return "Email is exist";
+    }
   }
 
   return "";

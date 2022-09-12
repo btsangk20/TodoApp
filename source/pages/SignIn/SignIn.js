@@ -2,8 +2,6 @@ document.getRootNode().addEventListener("load", isLogged());
 
 getAccountUser();
 
-let AccountUserForCheck = listUser[0];
-
 function getValidateMessageEmail(email) {
   if (email.trim() === "") {
     return "Email is required";
@@ -13,23 +11,30 @@ function getValidateMessageEmail(email) {
     return "Email is not valid";
   }
 
-  if (AccountUserForCheck.email !== email.trim()) {
-    return "Email is not exist";
+  //check email exist
+  for (var i = 0; i < listUser.length; i++) {
+    if (listUser[i].email === email.trim()) {
+      return "";
+    }
   }
 
-  return "";
+  return "Email is not exist";
+
 }
 
-function getValidateMessagePassword(password, isStrict = true) {
+function getValidateMessagePassword(password, email, isStrict = true) {
   if (password.trim() === "") {
     return "Password is required";
   }
 
-  if (AccountUserForCheck.password !== password.trim()) {
-    return "Password is not correct";
+  for (var i = 0; i < listUser.length; i++) {
+    if (listUser[i].email === email.trim() && listUser[i].password === password.trim()) {
+      return "";
+    }
   }
 
-  return "";
+  return "Password is not correct";
+
 }
 
 function renderErrorMessage(emailErrorMessage, passwordErrorMessage) {
@@ -42,7 +47,7 @@ function validateAccount() {
   const password = document.getElementById("password").value;
 
   const emailError = getValidateMessageEmail(email);
-  const passwordError = getValidateMessagePassword(password);
+  const passwordError = getValidateMessagePassword(password, email);
 
   if (emailError && passwordError) {
     renderErrorMessage(emailError, passwordError);

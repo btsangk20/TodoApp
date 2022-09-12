@@ -4,18 +4,20 @@ const AccountUser = {
   password: "",
 };
 
-let listUser = [];
+var listUser = [];
 
 function getAccountUser() {
   listUser = JSON.parse(localStorage.getItem("listUser"));
 }
 
 function setAccountUser(_fullname, _email, _password) {
-  let storeAccount = new Object();
-  storeAccount.fullname = _fullname;
-  storeAccount.email = _email;
-  storeAccount.password = _password;
+  AccountUser.fullname = _fullname;
+  AccountUser.email = _email;
+  AccountUser.password = _password;
 
-  listUser.push(storeAccount);
+  getAccountUser();
+
+  listUser.push(AccountUser);
+
   localStorage.setItem("listUser", JSON.stringify(listUser));
 }

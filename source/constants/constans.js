@@ -3,6 +3,6 @@ const EMAIL_REGEX =
 
 const FULLNAME_REGEX = /^[a-zA-Z ]{2,40}$/;
 
-let isLogin = false;
+var isLogin = false;
 
-let isRemember = false;
+var isRemember = false;
