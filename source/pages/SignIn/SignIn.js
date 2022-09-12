@@ -82,7 +82,7 @@ function validateAccount() {
 function onClickLogin() {
   if (validateAccount()) {
     alert("Login success");
-    window.location.href = "http://127.0.0.1:5500/TodoApp/";
+    window.location.href = "http://127.0.0.1:5500/source/pages/TodoApp/";
   }
 }
 

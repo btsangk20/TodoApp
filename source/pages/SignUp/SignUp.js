@@ -264,7 +264,7 @@ function validateForm() {
 function onClickSignUp() {
   if (validateForm()) {
     alert("Register success");
-    window.location.href = "http://127.0.0.1:5500/SignIn/";
+    window.location.href = "http://127.0.0.1:5500/source/pages/SignIn/";
   }
 }
 
