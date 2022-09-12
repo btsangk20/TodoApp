@@ -1,27 +1,4 @@
-const EMAIL_REGEX =
-  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-const FULLNAME_REGEX = /^[a-zA-Z ]{2,40}$/;
-
-const AccountUser = {
-  fullname: "",
-  email: "",
-  password: "",
-};
-
-function getAccountUser() {
-  const AccountUser = new Object();
-  AccountUser.fullname = localStorage.getItem("fullname");
-  AccountUser.email = localStorage.getItem("email");
-  AccountUser.password = localStorage.getItem("password");
-  return AccountUser;
-}
-
-function setAccountUser(AccountUser) {
-  localStorage.setItem("fullname", AccountUser.fullname);
-  localStorage.setItem("email", AccountUser.email);
-  localStorage.setItem("password", AccountUser.password);
-}
+document.getRootNode().addEventListener("load", isLogged());
 
 function getValidateMessageGender() {
   var genderItem = document.getElementsByName('gender');
@@ -40,11 +17,6 @@ function getValidateMessageEmail(email) {
 
   if (!EMAIL_REGEX.test(email.trim())) {
     return "Email is not valid";
-  }
-
-  //email is exist
-  if (localStorage.getItem("email") === email.trim()) {
-    return "Email is exist";
   }
 
   return "";
@@ -250,13 +222,7 @@ function validateForm() {
 
   renderErrorMessage("","","","","");
 
-  let storeAccount = new Object();
-
-  storeAccount.fullname = fullname;
-  storeAccount.email = email;
-  storeAccount.password = password;
-
-  setAccountUser(storeAccount);
+  setAccountUser(fullname, email, password);
 
   return true;
 }
