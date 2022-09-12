@@ -2,7 +2,7 @@ document.getRootNode().addEventListener("load", isLogged());
 
 getAccountUser();
 
-let AccountUserForCheck = listUser.pop();
+let AccountUserForCheck = listUser[0];
 
 function getValidateMessageEmail(email) {
   if (email.trim() === "") {

@@ -4,7 +4,7 @@ let taskList = [];
 
 function renderUser () {
   getAccountUser();
-  let user = listUser.pop();
+  let user = listUser[0];
   document.getElementsByClassName("user__full-name")[0].innerHTML += user.fullname;
 }
 
@@ -124,14 +124,11 @@ function deleteTask(index) {
 setTimeout (function () {
   isRemember = false;
   localStorage.setItem("isRemember", isRemember);
-  isLogin = false;
-  localStorage.setItem("isLogin", isLogin);
-}, 60000);
+}, 10000);
 
 function onClickLogout() {
-  localStorage.removeItem("fullname");
-  localStorage.removeItem("email");
-  localStorage.removeItem("password");
+  listUser.pop();
+  localStorage.setItem("listUser", JSON.stringify(listUser));
   window.location.href = "http://127.0.0.1:5500/source/pages/SignIn/";
   isLogin = false;
   localStorage.setItem("isLogin", isLogin);
