@@ -4,7 +4,7 @@ const AccountUser = {
   password: "",
 };
 
-let listUser = [];
+const listUser = [];
 
 function getAccountUser() {
   listUser = JSON.parse(localStorage.getItem("listUser"));
