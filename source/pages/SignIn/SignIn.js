@@ -72,6 +72,8 @@ function validateAccount() {
 function onClickRemember() {
   isRemember = document.getElementById("remember-box_ID").checked;
   localStorage.setItem("isRemember", isRemember);
+  localStorage.setItem("email", document.getElementById("email").value);
+  localStorage.setItem("password", document.getElementById("password").value);
 }
 
 setTimeout (function () {

@@ -4,7 +4,8 @@ function isLogged() {
     }
 
     if(localStorage.getItem("isRemember") === "true") {
-        document.getElementsByClassName("log-in__submit-button")[0].disabled = true;
+        document.getElementById('email').value = localStorage.getItem("email");
+        document.getElementById('password').value = localStorage.getItem("password");
     }
 }
 

@@ -127,8 +127,6 @@ setTimeout (function () {
 }, 10000);
 
 function onClickLogout() {
-  listUser.pop();
-  localStorage.setItem("listUser", JSON.stringify(listUser));
   window.location.href = "http://127.0.0.1:5500/source/pages/SignIn/";
   isLogin = false;
   localStorage.setItem("isLogin", isLogin);
