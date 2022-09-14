@@ -72,19 +72,18 @@ function validateAccount() {
 function onClickRemember() {
   isRemember = document.getElementById("remember-box_ID").checked;
   localStorage.setItem("isRemember", isRemember);
-  localStorage.setItem("email", document.getElementById("email").value);
-  localStorage.setItem("password", document.getElementById("password").value);
+  if (isRemember) {
+    localStorage.setItem("email", document.getElementById("email").value);
+    localStorage.setItem("password", document.getElementById("password").value);
+  }
 }
-
-setTimeout (function () {
-  isRemember = false;
-  localStorage.setItem("isRemember", isRemember);
-}, 10000);
 
 function onClickLogin() {
   if (validateAccount()) {
     alert("Login success");
     window.location.href = "http://127.0.0.1:5500/source/pages/TodoApp/";
+
+    sessionStorage.setItem("currentEmail", document.getElementById("email").value);
 
     onClickRemember();
 

@@ -4,8 +4,14 @@ let taskList = [];
 
 function renderUser () {
   getAccountUser();
-  let user = listUser[0];
-  document.getElementsByClassName("user__full-name")[0].innerHTML += user.fullname;
+  const currentEmail = sessionStorage.getItem("currentEmail");
+  if (currentEmail) {
+    for (var i = 0; i < listUser.length; i++) {
+      if (listUser[i].email === currentEmail) {
+        document.getElementsByClassName("user__full-name")[0].innerHTML += listUser[i].fullname;
+      }
+    }
+  }
 }
 
 renderUser()
@@ -124,10 +130,13 @@ function deleteTask(index) {
 setTimeout (function () {
   isRemember = false;
   localStorage.setItem("isRemember", isRemember);
-}, 10000);
+}, 1000 * 60 * 60);
 
 function onClickLogout() {
   window.location.href = "http://127.0.0.1:5500/source/pages/SignIn/";
+
+  sessionStorage.removeItem("currentEmail");
+  
   isLogin = false;
   localStorage.setItem("isLogin", isLogin);
 }
