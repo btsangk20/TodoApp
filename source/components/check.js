@@ -1,6 +1,10 @@
 function isLogged() {
     if(localStorage.getItem("isLogin") === "true") {
-        window.location.href = 'http://127.0.0.1:5500/source/pages/TodoApp/';
+        const path = window.location.href;
+        const pathArray = path.split("/");
+        pathArray[pathArray.length - 2] = "TodoApp";
+        const newPath = pathArray.join("/");
+        window.location.href = newPath;
     }
 
     if(localStorage.getItem("isRemember") === "true") {
@@ -11,6 +15,10 @@ function isLogged() {
 
 function isNotLogged() {
     if(localStorage.getItem("isLogin") === "false") {
-        window.location.href = 'http://127.0.0.1:5500/source/pages/SignIn/';
+        const path = window.location.href;
+        const pathArray = path.split("/");
+        pathArray[pathArray.length - 2] = "SignIn";
+        const newPath = pathArray.join("/");
+        window.location.href = newPath;
     }
 }
